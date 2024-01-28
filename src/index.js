@@ -3,7 +3,7 @@ dotenv.config();
 
 import express from 'express'
 const app = express()
-const port =3000
+const port = process.env.PORT || 3000
 import route from './routes/index.js'
 import bodyParser from 'body-parser'
 import {connectDB} from '../src/config/connectDB.js'
@@ -33,5 +33,6 @@ app.use((err,req,res,next)=>{
         message:err.message
     })
 })
+
 
 app.listen(port,()=>{console.log(`listen in ${port}!!`)})
