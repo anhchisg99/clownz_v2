@@ -2,10 +2,11 @@ import asyncHandler from "express-async-handler"
 import generateToken from '../utils/generateToken.js'
 import { getTokenFromHeader } from '../utils/getTokenFromHeader.js'
 import { verifyToken } from "../utils/verifyToken.js";
-import User from "../models/User";
+import { signAccessToken, verifyAccessToken } from "../utils/jwt_service.js";
+import User from "../models/User.js";
 
 export const registerUserCtrl = asyncHandler(async (req, res) => {
-    const { fullname, email, password } = req.body
+    const { fullname, email, password, phone } = req.body
 
     const userExits = await User.findOne({ email })
     if (userExits) {
@@ -18,21 +19,22 @@ export const registerUserCtrl = asyncHandler(async (req, res) => {
     res.status(201).json({
         status: "success",
         message: "User Registered Successfully",
-        data:user
+        data: user
     })
 })
 
-export async function Login(username,password){
-    const user  = await User.findOne({email})
-    
-    if(!user){
-        throw new Error('User not registerd')
-    }
 
+export const loginUserCtrl = asyncHandler(async (req, res) => {
+    const { email, password } = req.body
+    const user = await User.findOne({ email })
+    if (!user) {
+        throw new Error('User not registerded')
+    }
     const isValid = await user.isCheckPassword(password)
-    if(!isValid){
-        throw new Error("Password is wrong")   
-
+    if (!isValid) {
+        throw new Error("Password is wrong")
     }
-    return  user
-}
+    const accessToken = await signAccessToken(user._id)
+
+    res.json({ accessToken })
+})

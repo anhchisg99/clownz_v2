@@ -1,9 +1,10 @@
 
 import productData from './src/data/productData.js'
 import { connectDB } from './src/config/connectDB.js'
-import Product from './api/models/product.model.js'
+import Product from './src/models/product.js'
 
 connectDB()
+
 
 const importData = async () => {
   try {

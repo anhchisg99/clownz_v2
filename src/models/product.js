@@ -1,7 +1,7 @@
 import mongoose, { mongo } from 'mongoose'
 const Schema = mongoose.Schema
 
-const userSchema = Schema({
+const productSchema = Schema({
     name: String,
     description: String,
     price: Number,
@@ -40,4 +40,4 @@ const userSchema = Schema({
     timestamps: true
 })
 
-export default mongoose.model('User', userSchema)
+export default mongoose.model('Product', productSchema)

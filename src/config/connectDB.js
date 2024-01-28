@@ -1,9 +1,12 @@
 import mongoose from 'mongoose'
+import dotenv from "dotenv";
+dotenv.config();
+
 
 const connectDB = async () => {
   try {
     await mongoose.connect(
-      process.env.MONGO_URI || 'mongodb://127.0.0.1/test',
+      process.env.MONGO_URI || 'mongodb://127.0.0.1/clownz-test',
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,

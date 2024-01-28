@@ -16,6 +16,9 @@ const UserShema = new Schema(
       type: String,
       required: true,
     },
+    phone:{
+      type:String
+    },
     orders: [
       {
         type: mongoose.Schema.Types.ObjectId,
@@ -69,7 +72,7 @@ const UserShema = new Schema(
 );
 UserShema.pre('save',async function(next){
   try {
-      console.log(`Call before save:::`,this.username,this.password)
+      console.log(`Call before save:::`,this.email,this.password)
       const salt = await bcrypt.genSalt(10);
       const hashPassword = await bcrypt.hash(this.password,salt)
       this.password  = hashPassword
