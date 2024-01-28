@@ -1,10 +1,9 @@
 import asyncHandler from "express-async-handler";
 // import dotenv from "dotenv";
 // dotenv.config();
-import Stripe from "stripe";
-import Order from '../models/Order.js'
+import Order from '../models/order.js'
 import Product from "../models/product.js";
-import User from '../models/User.js'
+import User from '../models/user.js'
 // import { verifyAccessToken } from '../utils/jwt_service.js'ow
 
 export const createOrderCtrl = asyncHandler(async (req, res) => {

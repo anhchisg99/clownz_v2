@@ -3,7 +3,7 @@ import generateToken from '../utils/generateToken.js'
 import { getTokenFromHeader } from '../utils/getTokenFromHeader.js'
 import { verifyToken } from "../utils/verifyToken.js";
 import { signAccessToken, verifyAccessToken } from "../utils/jwt_service.js";
-import User from "../models/User.js";
+import User from "../models/user.js";
 
 export const registerUserCtrl = asyncHandler(async (req, res) => {
     const { fullname, email, password, phone } = req.body
